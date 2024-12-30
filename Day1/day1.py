@@ -17,14 +17,11 @@ def d1_s1(input):
     result = np.sum(distances)
     print(result)
 
-#d1_s1(input)
 
 #~~~~~~~~~~ Solution 2 ~~~~~~~~~~#
 
 def d1_s2(input):
     print(np.sum(np.abs(np.sort(np.array(input['List 1'])) - np.sort(np.array(input['List 2'])))))
-
-#d1_s2(input)
 
 
 #-------------------Part 2-------------------#
@@ -78,47 +75,18 @@ def d1_p2(input):
 
 
 
-######################## Robin ########################
-
-def separer_listes():
-    liste_1 = []
-    liste_2 = []
-    fichier_path = 'input.txt' 
-
-    with open(fichier_path, 'r') as fichier:
-        for ligne in fichier:
-            nombres = ligne.split()
-            if len(nombres) == 2: 
-                liste_1.append(nombres[0])
-                liste_2.append(nombres[1])
-
-    return liste_1, liste_2
-
-def j1_2():
-    liste_1, liste_2 = separer_listes()
-    similarity = 0
-    for i in liste_1 :
-        occurs = 0
-        for j in liste_2 :
-            if i == j :
-                occurs += 1
-        similarity += int(i)*occurs
-    print(similarity)
-
-
-
 #++++++++++++++++ Main ++++++++++++++++# 
 if __name__ == '__main__':
     start = time.time()
 
     input = pd.read_csv('input.txt', sep='   ', header=None, names=["List 1","List 2"], engine='python', dtype=int)
     
-    #d1_s1(input)   # Best time 0.602ms
+    #d1_s1(input)   # Best time 0.6ms
 
     #d1_s2(input)   # Best time 0.5ms
 
     #d1_p2(input)   # Best time 0.7ms
 
-    j1_2()         # Best time 3.19ms
+                    # Best time Robin 3.19ms
     
     print("(Done in {:.3f}ms)".format(float(time.time() - start)*100))
